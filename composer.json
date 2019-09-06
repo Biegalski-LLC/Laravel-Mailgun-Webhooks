@@ -1,0 +1,38 @@
+{
+    "name": "biegalski/laravel-mailgun-webhooks",
+    "description": "Track outgoing mailgun email status and associate it back with individual users. Get alerted of bounces and spam reports.",
+    "keywords": ["laravel", "mailgun", "webhooks", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Biegalski",
+            "email": "michael@biegalski-llc.com",
+            "homepage": "https://biegal.ski"
+        }
+    ],
+    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Biegalski\\LaravelMailgunWebhooks\\src\\LaravelMailgunWebhooksServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "php" : "^7.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "orchestra/testbench": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Biegalski\\LaravelMailgunWebhooks\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Biegalski\\LaravelMailgunWebhooks\\Tests\\": "tests"
+        }
+    }
+}
