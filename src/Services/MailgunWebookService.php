@@ -2,10 +2,8 @@
 
 namespace Biegalski\LaravelMailgunWebhooks\Services;
 
-use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunTagRepository;
-use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunTypeRepository;
+use Illuminate\Support\Facades\Log;
 use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunEventRepository;
-use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunVariableRepository;
 
 /**
  * Class MailgunWebookService
@@ -19,83 +17,60 @@ class MailgunWebookService
     private $event;
 
     /**
-     * @var MailgunTagRepository
+     * @desc Default user lookup to null
+     *
+     * @var null
      */
-    private $tag;
-
-    /**
-     * @var MailgunTypeRepository
-     */
-    private $type;
-
-    /**
-     * @var MailgunVariableRepository
-     */
-    private $variable;
+    private $user = null;
 
     /**
      * MailgunWebookService constructor.
      * @param MailgunEventRepository $event
-     * @param MailgunTagRepository $tag
-     * @param MailgunTypeRepository $type
-     * @param MailgunVariableRepository $variable
      */
-    public function __construct(MailgunEventRepository $event, MailgunTagRepository $tag, MailgunTypeRepository $type, MailgunVariableRepository $variable)
+    public function __construct(MailgunEventRepository $event)
     {
         $this->event = $event;
-        $this->tag = $tag;
-        $this->type = $type;
-        $this->variable = $variable;
     }
 
     /**
-     * @param string $type
+     * @param string $eventType
      * @param array $data
      * @return bool
      */
-    public function store(string $type, array $data)
+    public function store(string $eventType, array $data)
     {
-        $eventType = $this->getTypeId($type);
-
-        if( $eventType && isset($eventType->id) && is_int($eventType->id) ){
-
-            $userId = null;
-
-            if( isset($data['recipient']) ){
-                $userId = $this->lookupUser($data['recipient']);
-            }
-
-            $this->storeEvent($eventType->id, $data, $userId);
+        if( isset($data['recipient']) ){
+            $this->user = $this->lookupUser($data['recipient']);
         }
 
-        return false;
+        try{
+            $this->storeEvent($eventType, $data, $this->user);
+
+            return true;
+        }catch (\Exception $exception){
+
+            Log::error($exception->getMessage());
+
+            return false;
+        }
     }
 
     /**
-     * @param $type
-     * @return mixed
-     */
-    private function getTypeId($type)
-    {
-        return $this->type->getTypeIdByName($type);
-    }
-
-    /**
-     * @param int $typeId
+     * @param string $eventType
      * @param array $data
      * @param null $userId
      * @return mixed
      */
-    private function storeEvent(int $typeId, array $data, $userId = null)
+    private function storeEvent(string $eventType, array $data, $userId = null)
     {
-        return $this->event->store($typeId, $data, $userId);
+        return $this->event->store($eventType, $data, $userId);
     }
 
     /**
      * @param $emailAddress
      * @return int|null
      */
-    private function lookupUser($emailAddress)
+    private function lookupUser($emailAddress) : ?int
     {
         if (filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
             $findUser = $this->event->findUser($emailAddress);

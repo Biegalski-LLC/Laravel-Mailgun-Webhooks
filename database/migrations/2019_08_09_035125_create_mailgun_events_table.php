@@ -15,7 +15,7 @@ class CreateMailgunEventsTable extends Migration
     {
         Schema::create('mailgun_events', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('event_type_id')->index();
+            $table->enum('event_type', config('mailgun-webhooks.event_types') )->index();
             $table->unsignedBigInteger('user_id')->index()->nullable();
             $table->string('uuid');
             $table->string('recipient_domain');
@@ -28,8 +28,7 @@ class CreateMailgunEventsTable extends Migration
             $table->integer('attempt_number')->default(1);
             $table->boolean('attachments')->default(0);
             $table->timestamps();
-            $table->foreign('event_type_id')->references('id')->on('mailgun_types');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references( config('mailgun-webhooks.user_table.identifier_key') )->on( config('mailgun-webhooks.user_table.name') );
         });
     }
 
