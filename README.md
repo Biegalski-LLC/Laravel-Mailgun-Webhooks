@@ -114,7 +114,7 @@ If you're unsure how localization works in Laravel, please reference the documen
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Credits
-- [Biegalski LLC](https://michael-biegalski.com/)
+- [Biegalski LLC](https://biegal.ski/)
 - [paulredmond](https://gist.github.com/paulredmond/14523d3bd8062f9ce48cdd1340b3f171) - Laravel Middleware to Validate a signed Mailgun Webhook.
 
 ## License
