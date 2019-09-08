@@ -36,30 +36,21 @@ class MailgunWebhooksController
 
         switch ($type){
             case 'delivered-messages':
-                return $this->deliveredMessages($data);
+                //return print_r($data);
+                return $this->processData('Delivered Messages', $data);
             case 'opened-messages':
-                return $this->openedMessages($data);
+                return $this->processData('Opened Messages', $data);
+            case 'permanent-failure':
+                return $this->processData('Permanent Failure', $data);
+            case 'spam-complaints':
+                return $this->processData('Spam Complaints', $data);
+            case 'temporary-failure':
+                return $this->processData('Temporary Failure', $data);
+            case 'unsubscribes':
+                return $this->processData('Unsubscribes', $data);
             default:
                 return abort(404);
         }
-    }
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    private function deliveredMessages($data) : \Illuminate\Http\JsonResponse
-    {
-        return $this->processData('Delivered Messages', $data);
-    }
-
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    private function openedMessages($data) : \Illuminate\Http\JsonResponse
-    {
-        return $this->processData('Opens', $data);
     }
 
     /**
@@ -69,9 +60,9 @@ class MailgunWebhooksController
      */
     private function processData(string $type, $data)
     {
-        $storeDeliveredMessage = $this->mailgunService->store($type, $data);
+        $storeMessageData = $this->mailgunService->store($type, $data);
 
-        if( $storeDeliveredMessage ){
+        if( $storeMessageData ){
             return response()->json('Success!', 200);
         }
 

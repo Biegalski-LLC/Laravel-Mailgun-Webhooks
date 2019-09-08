@@ -4,6 +4,10 @@ namespace Biegalski\LaravelMailgunWebhooks\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class MailgunTag
+ * @package Biegalski\LaravelMailgunWebhooks\Model
+ */
 class MailgunTag extends Model
 {
     /**

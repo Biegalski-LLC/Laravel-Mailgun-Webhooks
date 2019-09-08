@@ -16,6 +16,7 @@ class CreateMailgunVariablesTable extends Migration
         Schema::create('mailgun_variables', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('event_id')->index();
+            $table->string('key');
             $table->string('value');
             $table->timestamps();
             $table->foreign('event_id')->references('id')->on('mailgun_events');

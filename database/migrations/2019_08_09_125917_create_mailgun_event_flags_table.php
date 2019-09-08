@@ -13,7 +13,7 @@ class CreateMailgunEventFlagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mailgun_event_flags', function (Blueprint $table) {
+        Schema::create('mailgun_flags', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('event_id')->index();
             $table->boolean('is_routed')->default(0);

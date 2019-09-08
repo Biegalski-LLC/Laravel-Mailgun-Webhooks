@@ -18,8 +18,8 @@ class CreateMailgunEventsTable extends Migration
             $table->enum('event_type', config('mailgun-webhooks.event_types') )->index();
             $table->unsignedBigInteger('user_id')->index()->nullable();
             $table->string('uuid');
-            $table->string('recipient_domain');
-            $table->string('recipient_user');
+            $table->string('recipient_domain')->nullable();
+            $table->string('recipient_user')->nullable();
             $table->string('msg_to')->nullable();
             $table->string('msg_from')->nullable();
             $table->string('msg_subject')->nullable();

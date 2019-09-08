@@ -2,7 +2,6 @@
 
 namespace Biegalski\LaravelMailgunWebhooks\Model;
 
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,7 +16,7 @@ class MailgunEvent extends Model
      * @var array
      */
     protected $fillable = [
-        'event_type_id',
+        'event_type',
         'user_id',
         'uuid',
         'recipient_domain',
@@ -43,17 +42,17 @@ class MailgunEvent extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function type()
+    public function user()
     {
-        return $this->hasOne(MailgunType::class, 'event_type_id', 'id');
+        return $this->hasOne(config('mailgun-webhooks.users_table.model_fpqn'), 'user_id', config('mailgun-webhooks.users_table.identifier_key'));
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function user()
+    public function flags()
     {
-        return $this->hasOne(User::class, 'user_id', 'id');
+        return $this->hasMany(MailgunFlag::class, 'event_id', 'id');
     }
 
     /**
