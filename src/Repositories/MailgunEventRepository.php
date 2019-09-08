@@ -15,12 +15,6 @@ use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunVariableRepository;
 class MailgunEventRepository
 {
     /**
-     * @var DB
-     * @desc Use DB Facade for user table since it may vary system to system
-     */
-    private $dbquery;
-
-    /**
      * @var \Biegalski\LaravelMailgunWebhooks\Repositories\MailgunFlagRepository
      */
     private $flags;
@@ -43,14 +37,13 @@ class MailgunEventRepository
     /**
      * MailgunEventRepository constructor.
      * @param MailgunEvent $model
-     * @param DB $dbquery
+     * @param \Biegalski\LaravelMailgunWebhooks\Repositories\MailgunFlagRepository $flags
      * @param \Biegalski\LaravelMailgunWebhooks\Repositories\MailgunTagRepository $tag
      * @param \Biegalski\LaravelMailgunWebhooks\Repositories\MailgunVariableRepository $variable
      */
-    public function __construct(MailgunEvent $model, DB $dbquery, MailgunFlagRepository $flags, MailgunTagRepository $tag, MailgunVariableRepository $variable)
+    public function __construct(MailgunEvent $model, MailgunFlagRepository $flags, MailgunTagRepository $tag, MailgunVariableRepository $variable)
     {
         $this->model = $model;
-        $this->dbquery = $dbquery;
         $this->flags = $flags;
         $this->tag = $tag;
         $this->variable = $variable;
@@ -149,7 +142,7 @@ class MailgunEventRepository
      */
     public function findUser(string $email)
     {
-        return $this->dbquery::table( config('mailgun-webhooks.user_table.name') )
+        return DB::table( config('mailgun-webhooks.user_table.name') )
             ->where( config('mailgun-webhooks.user_table.email_column'), $email)
             ->first();
     }
