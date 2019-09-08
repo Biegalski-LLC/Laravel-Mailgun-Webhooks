@@ -86,6 +86,23 @@ It starts collecting data and sending notifications after configuration is setup
 
 I have no affiliation with Laravel or Mailgun. Both are just frequently used in projects I am involved in and this package fills a need across various projects.
 
+## Translations
+
+There is currently 8 translations:
+
+- German
+- English
+- Spanish
+- French
+- Italian
+- Dutch
+- Portuguese
+- Russian
+
+More languages coming soon!
+
+If you're unsure how localization works in Laravel, please reference the documentation at [https://laravel.com/docs/master/localization](https://laravel.com/docs/master/localization)
+
 ## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
