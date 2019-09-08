@@ -149,8 +149,7 @@ class MailgunEventRepository
      */
     public function findUser(string $email)
     {
-        return $this->dbquery
-            ->table( config('mailgun-webhooks.user_table.name') )
+        return $this->dbquery::table( config('mailgun-webhooks.user_table.name') )
             ->where( config('mailgun-webhooks.user_table.email_column'), $email)
             ->first();
     }

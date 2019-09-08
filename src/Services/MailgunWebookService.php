@@ -39,8 +39,8 @@ class MailgunWebookService
      */
     public function store(string $eventType, array $data)
     {
-        if( isset($data['recipient']) ){
-            $this->user = $this->lookupUser($data['recipient']);
+        if( isset($data['event-data']['recipient']) ){
+            $this->user = $this->lookupUser($data['event-data']['recipient']);
         }
 
         try{
