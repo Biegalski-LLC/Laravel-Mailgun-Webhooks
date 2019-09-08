@@ -5,7 +5,7 @@ return [
         'name' => env('MAILGUN_WEBHOOKS_USER_TABLE_NAME', 'users'),
         'email_column' => env('MAILGUN_WEBHOOKS_USER_TABLE_EMAIL', 'email'),
         'identifier_key' => env('MAILGUN_WEBHOOKS_USER_TABLE_KEY', 'id'),
-        'model_fpqn' => env('MAILGUN_WEBHOOKS_USER_TABLE_KEY', 'App\User')
+        'model_fpqn' => env('MAILGUN_WEBHOOKS_USER_TABLE_FPQN', 'App\User')
     ],
     'trigger_alerts' => [
         'delivered' => env('MAILGUN_WEBHOOKS_TRIGGER_DELIVERED', false),
