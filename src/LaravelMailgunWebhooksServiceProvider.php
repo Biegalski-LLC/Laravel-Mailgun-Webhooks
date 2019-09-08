@@ -4,6 +4,10 @@ namespace Biegalski\LaravelMailgunWebhooks;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class LaravelMailgunWebhooksServiceProvider
+ * @package Biegalski\LaravelMailgunWebhooks
+ */
 class LaravelMailgunWebhooksServiceProvider extends ServiceProvider
 {
     /**
@@ -37,6 +41,13 @@ class LaravelMailgunWebhooksServiceProvider extends ServiceProvider
         ], 'mailgun_webhook_config');
 
         /**
+         * Publish email blade template
+         */
+        $this->publishes([
+            __DIR__ . '/Resources/Views/emails/mailgun_alert.blade.php' => resource_path('views/emails/mailgun_alert.blade.php')
+        ], 'mailgun_webhook_view');
+
+        /**
          * Load routes
          */
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
@@ -45,5 +56,15 @@ class LaravelMailgunWebhooksServiceProvider extends ServiceProvider
          * Load migrations
          */
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+
+        /**
+         * Load views
+         */
+        $this->loadViewsFrom(__DIR__ . '/Views', 'laravel-mailgun-webhooks');
+
+        /**
+         * Load translations
+         */
+        $this->loadTranslationsFrom(__DIR__ . '/Resources/lang', 'laravel-mailgun-webhooks');
     }
 }

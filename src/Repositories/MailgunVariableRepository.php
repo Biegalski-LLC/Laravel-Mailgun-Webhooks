@@ -1,10 +1,13 @@
 <?php
 
-
 namespace Biegalski\LaravelMailgunWebhooks\Repositories;
 
 use Biegalski\LaravelMailgunWebhooks\Model\MailgunVariable;
 
+/**
+ * Class MailgunVariableRepository
+ * @package Biegalski\LaravelMailgunWebhooks\Repositories
+ */
 class MailgunVariableRepository
 {
     /**

@@ -3,6 +3,7 @@
 namespace Biegalski\LaravelMailgunWebhooks\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Biegalski\LaravelMailgunWebhooks\Services\MailgunAlertService;
 use Biegalski\LaravelMailgunWebhooks\Services\MailgunWebookService;
 
 /**
@@ -12,16 +13,23 @@ use Biegalski\LaravelMailgunWebhooks\Services\MailgunWebookService;
 class MailgunWebhooksController
 {
     /**
+     * @var MailgunAlertService
+     */
+    private $alertService;
+
+    /**
      * @var MailgunWebookService
      */
     private $mailgunService;
 
     /**
      * MailgunWebhooksController constructor.
+     * @param MailgunAlertService $alertService
      * @param MailgunWebookService $mailgunService
      */
-    public function __construct(MailgunWebookService $mailgunService)
+    public function __construct(MailgunAlertService $alertService, MailgunWebookService $mailgunService)
     {
+        $this->alertService = $alertService;
         $this->mailgunService = $mailgunService;
     }
 
@@ -36,7 +44,6 @@ class MailgunWebhooksController
 
         switch ($type){
             case 'delivered-messages':
-                //return print_r($data);
                 return $this->processData('Delivered Messages', $data);
             case 'opened-messages':
                 return $this->processData('Opened Messages', $data);
@@ -55,12 +62,14 @@ class MailgunWebhooksController
 
     /**
      * @param string $type
-     * @param $request
+     * @param $data
      * @return \Illuminate\Http\JsonResponse
      */
     private function processData(string $type, $data)
     {
         $storeMessageData = $this->mailgunService->store($type, $data);
+
+        $sendAlerts = $this->sendAlert($type, $data);
 
         if( $storeMessageData ){
             return response()->json('Success!', 200);

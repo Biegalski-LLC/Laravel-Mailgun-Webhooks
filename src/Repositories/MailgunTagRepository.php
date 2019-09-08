@@ -5,6 +5,10 @@ namespace Biegalski\LaravelMailgunWebhooks\Repositories;
 use Biegalski\LaravelMailgunWebhooks\Model\MailgunTag;
 use Biegalski\LaravelMailgunWebhooks\Model\MailgunEventTag;
 
+/**
+ * Class MailgunTagRepository
+ * @package Biegalski\LaravelMailgunWebhooks\Repositories
+ */
 class MailgunTagRepository
 {
     /**
@@ -20,7 +24,7 @@ class MailgunTagRepository
     /**
      * MailgunTagRepository constructor.
      * @param MailgunTag $model
-     * @param DB $dbquery
+     * @param MailgunEventTag $eventTag
      */
     public function __construct(MailgunTag $model, MailgunEventTag $eventTag)
     {

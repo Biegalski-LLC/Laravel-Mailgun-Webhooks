@@ -8,6 +8,10 @@ use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunTagRepository;
 use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunFlagRepository;
 use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunVariableRepository;
 
+/**
+ * Class MailgunEventRepository
+ * @package Biegalski\LaravelMailgunWebhooks\Repositories
+ */
 class MailgunEventRepository
 {
     /**
@@ -16,6 +20,9 @@ class MailgunEventRepository
      */
     private $dbquery;
 
+    /**
+     * @var \Biegalski\LaravelMailgunWebhooks\Repositories\MailgunFlagRepository
+     */
     private $flags;
 
     /**
