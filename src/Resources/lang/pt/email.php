@@ -2,6 +2,10 @@
 
 return [
     'greeting' => 'Oi,',
+    'clicks' => [
+        'subject' => 'Link clicado',
+        'desc' => 'O destinatário clicou em um link em seu email, dados que envolvem esse email abaixo:'
+    ],
     'delivered' => [
         'subject' => 'Mensagem enviada',
         'desc' => 'Um email foi entregue com sucesso ao destinatário, dados que envolvem essa entrega de email abaixo:'

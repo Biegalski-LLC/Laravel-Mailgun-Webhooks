@@ -43,6 +43,8 @@ class MailgunWebhooksController
         $data = $request->all();
 
         switch ($type){
+            case 'clicks':
+                return $this->processData('Clicks', $data);
             case 'delivered-messages':
                 return $this->processData('Delivered Messages', $data);
             case 'opened-messages':

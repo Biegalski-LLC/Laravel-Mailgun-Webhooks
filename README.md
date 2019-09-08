@@ -68,6 +68,7 @@ You're all set! Now you just need to add the API endpoints to the webhooks in yo
 
 | Event Type | Endpoint URL |
 | ----------- | ----------- |
+| Clicked | https://domain.com/api/mg-webhooks/clicked |
 | Delivered Messages | https://domain.com/api/mg-webhooks/delivered-messages |
 | Opens | https://domain.com/api/mg-webhooks/opened-messages |
 | Permanent Failure | https://domain.com/api/mg-webhooks/permanent-failure |

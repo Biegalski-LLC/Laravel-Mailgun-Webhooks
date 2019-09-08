@@ -2,6 +2,10 @@
 
 return [
     'greeting' => 'Hoi,',
+    'clicks' => [
+        'subject' => 'Link geklikt',
+        'desc' => 'De ontvanger heeft op een link in uw e-mail geklikt. Gegevens over deze e-mail hieronder:'
+    ],
     'delivered' => [
         'subject' => 'Boodschap afgeleverd',
         'desc' => 'Een e-mail is succesvol afgeleverd bij de ontvanger, gegevens met betrekking tot deze e-mailbezorging hieronder:'

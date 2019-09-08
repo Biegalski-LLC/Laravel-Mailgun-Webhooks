@@ -22,6 +22,7 @@ return [
         'subject_prefix' => env('MAILGUN_WEBHOOKS_ALERTS_SUBJECT_PREFIX', 'Mailgun Trigger:')
     ],
     'event_types' => [
+        'Clicks',
         'Delivered Messages',
         'Opened Messages',
         'Permanent Failure',
