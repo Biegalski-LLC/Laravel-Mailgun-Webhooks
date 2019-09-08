@@ -68,12 +68,12 @@ You're all set! Now you just need to add the API endpoints to the webhooks in yo
 
 | Event Type | Endpoint URL |
 | ----------- | ----------- |
-| Delivered Messages | https://domain.com/api/mailgun-webhooks/delivered-messages |
-| Opens | https://domain.com/api/mailgun-webhooks/opened-messages |
-| Permanent Failure | https://domain.com/api/mailgun-webhooks/permanent-failure |
-| Spam Complaints | https://domain.com/api/mailgun-webhooks/spam-complaints |
-| Temporary Failure | https://domain.com/api/mailgun-webhooks/temporary-failure |
-| Unsubscribes | https://domain.com/api/mailgun-webhooks/unsubscribes |
+| Delivered Messages | https://domain.com/api/mg-webhooks/delivered-messages |
+| Opens | https://domain.com/api/mg-webhooks/opened-messages |
+| Permanent Failure | https://domain.com/api/mg-webhooks/permanent-failure |
+| Spam Complaints | https://domain.com/api/mg-webhooks/spam-complaints |
+| Temporary Failure | https://domain.com/api/mg-webhooks/temporary-failure |
+| Unsubscribes | https://domain.com/api/mg-webhooks/unsubscribes |
 
 *Replace "https://domain.com" with your applications URL.
 
