@@ -1,14 +1,19 @@
 # Laravel Mailgun Webhooks
 
-This package, once completed, will allow you to quick and easily integrate your Laravel application with Mailgun Webhooks thus allowing you to track the outgoing email status for each individual user.
+#### Tracking
+This package allows you to quick and easily integrate your Laravel application with Mailgun Webhooks thus allowing you to track the outgoing email status for each individual user.
 
 - Log when an email was delivered to a specific user
 - Log when an email failed to send to a specific user
-- Etc...
+- etc...
 
-This may be useful information you want to display to your end users. This might be useful information you want to display to a certain subset of users (Managers, Moderators, Admins, etc...).
+This may be useful information you want to display to your end users or to a certain subset of users (Managers, Moderators, Admins, etc...). 
 
-Another optional feature is to enable alerts. Set it up so that you receive an alert when an email fails or when there is a spam complaint.
+#### Alerts
+Set it up so that you receive alerts for specific things.
+- Get notified when an email fails to deliver to a user
+- Get notified when a user files a spam complaint
+- etc...
 
 ## Installation Instructions
 
