@@ -3,12 +3,12 @@
 This package, once completed, will allow you to quick and easily integrate your Laravel application with Mailgun Webhooks thus allowing you to track the outgoing email status for each individual user.
 
 - Log when an email was delivered to a specific user
-- Log when an email bounced for a specific user
+- Log when an email failed to send to a specific user
 - Etc...
 
 This may be useful information you want to display to your end users. This might be useful information you want to display to a certain subset of users (Managers, Moderators, Admins, etc...).
 
-Another optional feature will be to enable alerts. Receive an alert when an email fails or when there is a spam complaint. More to come.
+Another optional feature is to enable alerts. Set it up so that you receive an alert when an email fails or when there is a spam complaint.
 
 ## Installation Instructions
 
