@@ -43,19 +43,19 @@ class MailgunWebhooksController
         $data = $request->all();
 
         switch ($type){
-            case 'clicks':
+            case 'clicked':
                 return $this->processData('Clicks', $data);
-            case 'delivered-messages':
+            case 'delivered':
                 return $this->processData('Delivered Messages', $data);
-            case 'opened-messages':
+            case 'opened':
                 return $this->processData('Opened Messages', $data);
-            case 'permanent-failure':
+            case 'perm-failure':
                 return $this->processData('Permanent Failure', $data);
-            case 'spam-complaints':
+            case 'spam':
                 return $this->processData('Spam Complaints', $data);
-            case 'temporary-failure':
+            case 'temp-failure':
                 return $this->processData('Temporary Failure', $data);
-            case 'unsubscribes':
+            case 'unsubscribe':
                 return $this->processData('Unsubscribes', $data);
             default:
                 return abort(404);

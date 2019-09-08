@@ -74,12 +74,12 @@ You're all set! Now you just need to add the API endpoints to the webhooks in yo
 | Event Type | Endpoint URL |
 | ----------- | ----------- |
 | Clicked | https://domain.com/api/mg-webhooks/clicked |
-| Delivered Messages | https://domain.com/api/mg-webhooks/delivered-messages |
-| Opens | https://domain.com/api/mg-webhooks/opened-messages |
-| Permanent Failure | https://domain.com/api/mg-webhooks/permanent-failure |
-| Spam Complaints | https://domain.com/api/mg-webhooks/spam-complaints |
-| Temporary Failure | https://domain.com/api/mg-webhooks/temporary-failure |
-| Unsubscribes | https://domain.com/api/mg-webhooks/unsubscribes |
+| Delivered Messages | https://domain.com/api/mg-webhooks/delivered |
+| Opens | https://domain.com/api/mg-webhooks/opened |
+| Permanent Failure | https://domain.com/api/mg-webhooks/perm-failure |
+| Spam Complaints | https://domain.com/api/mg-webhooks/spam |
+| Temporary Failure | https://domain.com/api/mg-webhooks/temp-failure |
+| Unsubscribes | https://domain.com/api/mg-webhooks/unsubscribe |
 
 *Replace "https://domain.com" with your applications URL.
 
