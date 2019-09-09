@@ -14,7 +14,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Biegalski-LLC\\LaravelMailgunWebhooks\\src\\LaravelMailgunWebhooksServiceProvider"
+                "biegalski-llc\\laravel-mailgun-webhooks\\src\\LaravelMailgunWebhooksServiceProvider"
             ]
         }
     },
@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Biegalski-LLC\\LaravelMailgunWebhooks\\" : "src/"
+            "biegalski-llc\\laravel-mailgun-webhooks\\" : "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Biegalski-LLC\\LaravelMailgunWebhooks\\Tests\\": "tests"
+            "biegalski-llc\\laravel-mailgun-webhooks\\tests\\": "tests"
         }
     }
 }
