@@ -14,7 +14,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Biegalski\\LaravelMailgunWebhooks\\src\\LaravelMailgunWebhooksServiceProvider"
+                "Biegalski-LLC\\LaravelMailgunWebhooks\\src\\LaravelMailgunWebhooksServiceProvider"
             ]
         }
     },
