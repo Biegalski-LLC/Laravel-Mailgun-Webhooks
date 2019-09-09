@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Biegalski\\LaravelMailgunWebhooks\\" : "src/"
+            "Biegalski-LLC\\LaravelMailgunWebhooks\\" : "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Biegalski\\LaravelMailgunWebhooks\\Tests\\": "tests"
+            "Biegalski-LLC\\LaravelMailgunWebhooks\\Tests\\": "tests"
         }
     }
 }
