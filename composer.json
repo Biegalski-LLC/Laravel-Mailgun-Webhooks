@@ -1,13 +1,13 @@
 {
     "name": "biegalski-llc/laravel-mailgun-webhooks",
     "description": "This package allows you to quick and easily integrate your Laravel application with Mailgun Webhooks thus allowing you to track the outgoing email status for each individual user. There is also an optional feature to receive alerts for specific mailgun events.",
-    "keywords": ["laravel", "mailgun", "webhooks", "php"],
+    "keywords": ["laravel", "mailgun", "webhooks", "php", "email delivery status"],
     "license": "MIT",
     "authors": [
         {
             "name": "Michael Biegalski",
             "email": "packages@biegalski-llc.com",
-            "homepage": "https://biegal.ski"
+            "homepage": "https://biegal.ski/"
         }
     ],
     "minimum-stability": "dev",
