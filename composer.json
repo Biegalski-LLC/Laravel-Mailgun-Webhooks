@@ -1,5 +1,5 @@
 {
-    "name": "biegalski/laravel-mailgun-webhooks",
+    "name": "biegalski-llc/laravel-mailgun-webhooks",
     "description": "Track outgoing mailgun email status and associate it back with individual users. Get alerted of bounces and spam reports.",
     "keywords": ["laravel", "mailgun", "webhooks", "php"],
     "license": "MIT",
