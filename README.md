@@ -19,7 +19,7 @@ Set it up so that you receive alerts for specific things.
 
 Lets begin the installation. First you'll need to install the package with composer.
 
-`composer require`
+`composer require biegalski-llc/laravel-mailgun-webhooks`
 
 Next, you will want to publish the configuration and view files.
 
