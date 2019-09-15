@@ -2,6 +2,7 @@
 
 namespace Biegalski\LaravelMailgunWebhooks\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Biegalski\LaravelMailgunWebhooks\Services\MailgunAlertService;
 use Biegalski\LaravelMailgunWebhooks\Services\MailgunWebookService;
@@ -10,7 +11,7 @@ use Biegalski\LaravelMailgunWebhooks\Services\MailgunWebookService;
  * Class MailgunWebhooksController
  * @package Biegalski\LaravelMailgunWebhooks\Controllers
  */
-class MailgunWebhooksController
+class MailgunWebhooksController extends Controller
 {
     /**
      * @var MailgunAlertService
