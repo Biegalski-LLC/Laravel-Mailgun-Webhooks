@@ -37,7 +37,7 @@ class MailgunWebhooksController extends Controller
     /**
      * @param Request $request
      * @param $type
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|void
      */
     public function messageType(Request $request, $type)
     {
