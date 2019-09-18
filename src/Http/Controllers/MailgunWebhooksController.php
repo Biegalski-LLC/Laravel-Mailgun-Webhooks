@@ -2,8 +2,8 @@
 
 namespace Biegalski\LaravelMailgunWebhooks\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Biegalski\LaravelMailgunWebhooks\Services\MailgunAlertService;
 use Biegalski\LaravelMailgunWebhooks\Services\MailgunWebookService;
 
