@@ -17,6 +17,11 @@ class MailgunWebookService
     private $event;
 
     /**
+     * @var \GuzzleHttp\Client
+     */
+    private $guzzle;
+
+    /**
      * @desc Default user lookup to null
      *
      * @var null
@@ -30,12 +35,14 @@ class MailgunWebookService
     public function __construct(MailgunEventRepository $event)
     {
         $this->event = $event;
+        $this->guzzle = new \GuzzleHttp\Client();
     }
 
     /**
      * @param string $eventType
      * @param array $data
      * @return bool
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function store(string $eventType, array $data)
     {
@@ -44,7 +51,14 @@ class MailgunWebookService
         }
 
         try{
-            $this->storeEvent($eventType, $data, $this->user);
+            $eventId = $this->storeEvent($eventType, $data, $this->user);
+
+            /**
+             * @desc If eventId integer is returned and Mailgun contains storage URL and we have the latest migration - lets store that data
+             */
+            if( is_int($eventId) && isset($data['event-data']['storage']['url']) ){
+                $this->storeContent($eventId, $data['event-data']['storage']['url']);
+            }
 
             return true;
         }catch (\Exception $exception){
@@ -64,6 +78,31 @@ class MailgunWebookService
     private function storeEvent(string $eventType, array $data, $userId = null)
     {
         return $this->event->store($eventType, $data, $userId);
+    }
+
+    /**
+     * @param int $eventId
+     * @param string $storageUrl
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    private function storeContent(int $eventId, string $storageUrl)
+    {
+        $getContent = $this->guzzle->request(
+            'GET',
+            $storageUrl,
+            [
+                'auth' => [
+                    'api',
+                    config('services.mailgun.secret')
+                ]
+            ]
+        );
+
+        return $this->event->storeContent(
+            $eventId,
+            json_decode( $getContent->getBody()->getContents(), true )
+        );
     }
 
     /**

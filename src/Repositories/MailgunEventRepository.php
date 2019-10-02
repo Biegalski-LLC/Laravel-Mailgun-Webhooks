@@ -4,6 +4,7 @@ namespace Biegalski\LaravelMailgunWebhooks\Repositories;
 
 use Illuminate\Support\Facades\DB;
 use Biegalski\LaravelMailgunWebhooks\Model\MailgunEvent;
+use Biegalski\LaravelMailgunWebhooks\Model\MailgunEventContent;
 use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunTagRepository;
 use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunFlagRepository;
 use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunVariableRepository;
@@ -14,6 +15,11 @@ use Biegalski\LaravelMailgunWebhooks\Repositories\MailgunVariableRepository;
  */
 class MailgunEventRepository
 {
+    /**
+     * @var MailgunEventContent
+     */
+    private $content;
+
     /**
      * @var \Biegalski\LaravelMailgunWebhooks\Repositories\MailgunFlagRepository
      */
@@ -36,13 +42,15 @@ class MailgunEventRepository
 
     /**
      * MailgunEventRepository constructor.
+     * @param MailgunEventContent $content
      * @param MailgunEvent $model
      * @param \Biegalski\LaravelMailgunWebhooks\Repositories\MailgunFlagRepository $flags
      * @param \Biegalski\LaravelMailgunWebhooks\Repositories\MailgunTagRepository $tag
      * @param \Biegalski\LaravelMailgunWebhooks\Repositories\MailgunVariableRepository $variable
      */
-    public function __construct(MailgunEvent $model, MailgunFlagRepository $flags, MailgunTagRepository $tag, MailgunVariableRepository $variable)
+    public function __construct(MailgunEventContent $content, MailgunEvent $model, MailgunFlagRepository $flags, MailgunTagRepository $tag, MailgunVariableRepository $variable)
     {
+        $this->content = $content;
         $this->model = $model;
         $this->flags = $flags;
         $this->tag = $tag;
@@ -53,7 +61,7 @@ class MailgunEventRepository
      * @param string $eventType
      * @param array $data
      * @param null $userId
-     * @return mixed
+     * @return null
      */
     public function store(string $eventType, array $data, $userId = null)
     {
@@ -71,7 +79,11 @@ class MailgunEventRepository
             $this->variable->processEventVariables($data['event-data']['user-variables'], $storeEvent->id);
         }
 
-        return true;
+        if( isset($storeEvent->id) ){
+            return $storeEvent->id;
+        }
+
+        return null;
     }
 
     /**
@@ -95,6 +107,26 @@ class MailgunEventRepository
             'attempt_number' => $data['event-data']['delivery-status']['attempt-no'] ?? 1,
             'attachments' => $this->areAttachmentsIncluded($data),
             'user_id' => $userId,
+        ]);
+    }
+
+    /**
+     * @param int $eventId
+     * @param array $content
+     * @return mixed
+     */
+    public function storeContent(int $eventId, array $content)
+    {
+        return $this->content->create([
+            'event_id' => $eventId,
+            'subject' => $content['subject'] ?? null,
+            'to' => $content['To'] ?? null,
+            'content_type' => $content['Content-Type'] ?? null,
+            'message_id' => $content['Message-Id'] ?? null,
+            'stripped_text' => $content['stripped-text'] ?? null,
+            'stripped_html' => $content['stripped-html'] ?? null,
+            'body_html' => $content['body-html'] ?? null,
+            'body_plain' => $content['body-plain'] ?? null,
         ]);
     }
 

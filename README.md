@@ -9,8 +9,15 @@ This package allows you to quick and easily integrate your Laravel application w
 
 This may be useful information you want to display to your end users or to a certain subset of users (Managers, Moderators, Admins, etc...). 
 
+### Email Content Storage
+This package will also store the content of the emails sent if you need to reference them at any point in the future. There are many use-cases for why this information is valuable.
+
+- Verify a customers complaint with information in the email they received a few weeks ago
+- Validate that a customer isn't altering / falsifying an email to benefit their case
+- etc...
+
 #### Alerts
-Set it up so that you receive alerts for specific things.
+This package allows gives you the ability to set it up so that you receive alerts for specific things. You have the ability to turn on and off the type of notifications you want to receive.
 - Get notified when an email fails to deliver to a user
 - Get notified when a user files a spam complaint
 - etc...
