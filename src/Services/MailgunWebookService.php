@@ -29,6 +29,15 @@ class MailgunWebookService
     private $user = null;
 
     /**
+     * @var array
+     */
+    private $saveContentEventTypes = [
+        'Delivered Messages',
+        'Permanent Failure',
+        'Temporary Failure'
+    ];
+
+    /**
      * MailgunWebookService constructor.
      * @param MailgunEventRepository $event
      */
@@ -56,7 +65,7 @@ class MailgunWebookService
             /**
              * @desc If event type is Delivered Messages and eventId integer is returned and Mailgun contains storage URL - lets store that messages content
              */
-            if( $eventType === 'Delivered Messages' && is_int($eventId) && isset($data['event-data']['storage']['url']) ){
+            if( is_int($eventId) && isset($data['event-data']['storage']['url']) && in_array($eventType, $this->saveContentEventTypes, true) ){
                 $this->storeContent($eventId, $data['event-data']['storage']['url']);
             }
 
