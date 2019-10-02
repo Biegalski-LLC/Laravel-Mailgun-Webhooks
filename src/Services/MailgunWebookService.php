@@ -54,9 +54,9 @@ class MailgunWebookService
             $eventId = $this->storeEvent($eventType, $data, $this->user);
 
             /**
-             * @desc If eventId integer is returned and Mailgun contains storage URL and we have the latest migration - lets store that data
+             * @desc If event type is Delivered Messages and eventId integer is returned and Mailgun contains storage URL - lets store that messages content
              */
-            if( is_int($eventId) && isset($data['event-data']['storage']['url']) ){
+            if( $eventType === 'Delivered Messages' && is_int($eventId) && isset($data['event-data']['storage']['url']) ){
                 $this->storeContent($eventId, $data['event-data']['storage']['url']);
             }
 

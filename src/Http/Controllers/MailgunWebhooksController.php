@@ -38,6 +38,7 @@ class MailgunWebhooksController extends Controller
      * @param Request $request
      * @param $type
      * @return \Illuminate\Http\JsonResponse|void
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function messageType(Request $request, $type)
     {
@@ -67,6 +68,7 @@ class MailgunWebhooksController extends Controller
      * @param string $type
      * @param $data
      * @return \Illuminate\Http\JsonResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function processData(string $type, $data)
     {
