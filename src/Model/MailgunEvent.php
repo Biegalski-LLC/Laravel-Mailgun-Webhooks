@@ -12,7 +12,7 @@ class MailgunEvent extends Model
 {
 
     protected $dispatchesEvents = [
-        'saving' => \Biegalski\LaravelMailgunWebhooks\Events\SaveEvent::class,
+        'created' => \Biegalski\LaravelMailgunWebhooks\Events\CreatedEvent::class,
     ];
 
     /**

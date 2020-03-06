@@ -5,7 +5,7 @@ namespace Biegalski\LaravelMailgunWebhooks\Events;
 use \Biegalski\LaravelMailgunWebhooks\Model\MailgunEvent;
 use Illuminate\Queue\SerializesModels;
 
-class SaveEvent
+class CreatedEvent
 {
     use SerializesModels;
 
