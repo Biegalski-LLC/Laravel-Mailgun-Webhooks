@@ -123,6 +123,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ## Credits
 - [Biegalski LLC](https://biegal.ski/)
 - [paulredmond](https://gist.github.com/paulredmond/14523d3bd8062f9ce48cdd1340b3f171) - Laravel Middleware to Validate a signed Mailgun Webhook.
+- [naszybko](https://github.com/naszybko) - Introducing events pull request
 
 ## License
 
