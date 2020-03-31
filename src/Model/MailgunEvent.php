@@ -10,6 +10,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MailgunEvent extends Model
 {
+
+    protected $dispatchesEvents = [
+        'created' => \Biegalski\LaravelMailgunWebhooks\Events\CreatedEvent::class,
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
