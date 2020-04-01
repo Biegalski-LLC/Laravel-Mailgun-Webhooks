@@ -101,7 +101,7 @@ I have no affiliation with Laravel or Mailgun. Both are just frequently used in 
 
 ## Translations
 
-There is currently 8 translations:
+There is currently 9 translations:
 
 - German
 - English
@@ -111,6 +111,7 @@ There is currently 8 translations:
 - Dutch
 - Portuguese
 - Russian
+- Polish
 
 More languages coming soon!
 
