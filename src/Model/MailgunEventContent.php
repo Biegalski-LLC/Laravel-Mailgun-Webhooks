@@ -25,4 +25,12 @@ class MailgunEventContent extends Model
         'body_html',
         'body_plain'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function event()
+    {
+        return $this->belongsTo(MailgunEvent::class, 'event_id');
+    }
 }

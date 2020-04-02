@@ -53,6 +53,14 @@ class MailgunEvent extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function content()
+    {
+        return $this->hasOne(MailgunEventContent::class, 'event_id', 'id');
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function flags()
