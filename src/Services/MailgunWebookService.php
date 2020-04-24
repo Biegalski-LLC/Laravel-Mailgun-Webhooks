@@ -53,7 +53,7 @@ class MailgunWebookService
      * @return bool
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function store(string $eventType, array $data)
+    public function store(string $eventType, array $data): ?bool
     {
         if( isset($data['event-data']['recipient']) ){
             $this->user = $this->lookupUser($data['event-data']['recipient']);
@@ -118,7 +118,7 @@ class MailgunWebookService
      * @param $emailAddress
      * @return int|null
      */
-    private function lookupUser($emailAddress) : ?int
+    private function lookupUser($emailAddress): ?int
     {
         if (filter_var($emailAddress, FILTER_VALIDATE_EMAIL)) {
             $findUser = $this->event->findUser($emailAddress);

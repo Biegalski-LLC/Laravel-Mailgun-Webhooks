@@ -44,7 +44,7 @@ class LaravelMailgunWebhooksServiceProvider extends ServiceProvider
          * Publish email blade template
          */
         $this->publishes([
-            __DIR__ . '/Resources/Views/emails/mailgun_alert.blade.php' => resource_path('views/emails/mailgun_alert.blade.php')
+            __DIR__ . '/Resources/views/emails/mailgun_alert.blade.php' => resource_path('views/emails/mailgun_alert.blade.php')
         ], 'mailgun_webhook_view');
 
         /**
@@ -60,7 +60,7 @@ class LaravelMailgunWebhooksServiceProvider extends ServiceProvider
         /**
          * Load views
          */
-        $this->loadViewsFrom(__DIR__ . '/Views', 'laravel-mailgun-webhooks');
+        $this->loadViewsFrom(__DIR__ . '/views', 'laravel-mailgun-webhooks');
 
         /**
          * Load translations
