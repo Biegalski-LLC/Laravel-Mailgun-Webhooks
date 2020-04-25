@@ -79,6 +79,7 @@ class MailgunAlertService
             default:
                 return null;
         }
+        return null;
     }
 
     /**
