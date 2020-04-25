@@ -60,7 +60,7 @@ class LaravelMailgunWebhooksServiceProvider extends ServiceProvider
         /**
          * Load views
          */
-        $this->loadViewsFrom(__DIR__ . '/views', 'laravel-mailgun-webhooks');
+        $this->loadViewsFrom(__DIR__ . '/Resources/views', 'laravel-mailgun-webhooks');
 
         /**
          * Load translations
