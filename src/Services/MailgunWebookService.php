@@ -63,10 +63,16 @@ class MailgunWebookService
             $eventId = $this->storeEvent($eventType, $data, $this->user);
 
             /**
-             * @desc If event type is Delivered Messages and eventId integer is returned and Mailgun contains storage URL - lets store that messages content
+             * @desc If content logging is enabled
              */
-            if( is_int($eventId) && isset($data['event-data']['storage']['url']) && in_array($eventType, $this->saveContentEventTypes, true) ){
-                $this->storeContent($eventId, $data['event-data']['storage']['url']);
+            if( config('mailgun-webhooks.options.disable_content_logging') !== true ){
+
+                /**
+                 * @desc If event type is Delivered Messages and eventId integer is returned and Mailgun contains storage URL - lets store that messages content
+                 */
+                if( is_int($eventId) && isset($data['event-data']['storage']['url']) && in_array($eventType, $this->saveContentEventTypes, true) ){
+                    $this->storeContent($eventId, $data['event-data']['storage']['url']);
+                }
             }
 
             return true;

@@ -40,12 +40,18 @@ Here are additional fields you'll need to add to your dotenv file:
 MAILGUN_WEBHOOKS_ALERTS_TO=
 MAILGUN_WEBHOOKS_ALERTS_FROM_EMAIL=
 MAILGUN_WEBHOOKS_ALERTS_FROM_NAME=
+
 MAILGUN_WEBHOOKS_TRIGGER_DELIVERED=false
 MAILGUN_WEBHOOKS_TRIGGER_OPENED=false
 MAILGUN_WEBHOOKS_TRIGGER_PERM_FAILURE=true
 MAILGUN_WEBHOOKS_TRIGGER_SPAM=true
 MAILGUN_WEBHOOKS_TRIGGER_TEMP_FAILURE=true
 MAILGUN_WEBHOOKS_TRIGGER_UNSUBSCRIBE=true
+
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_CONTENT=false
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_FLAG=false
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_TAG=false
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_VARIABLE=false
 ```
 
 By default - we reference the App\Users model to form the relationship. If you use a custom model or have made changes to the User model - you may need to add and edit these variables to your dotenv as well:

@@ -67,17 +67,33 @@ class MailgunEventRepository
     {
         $storeEvent = $this->storeEvent($eventType, $data, $userId);
 
-        if( !empty($data['event-data']['flags']) && is_array($data['event-data']['flags']) ){
-            $this->flags->createFlags($data['event-data']['flags'], $storeEvent->id);
+        /**
+         * @desc Check if flag logging is disabled
+         */
+        if( config('mailgun-webhooks.options.disable_flag_logging') !== true ){
+            if( !empty($data['event-data']['flags']) && is_array($data['event-data']['flags']) ){
+                $this->flags->createFlags($data['event-data']['flags'], $storeEvent->id);
+            }
         }
 
-        if( !empty($data['event-data']['tags']) && is_array($data['event-data']['tags']) ){
-            $this->tag->tagEvent($data['event-data']['tags'], $storeEvent->id);
+        /**
+         * @desc Check if tag logging is disabled
+         */
+        if( config('mailgun-webhooks.options.disable_tag_logging') !== true ){
+            if( !empty($data['event-data']['tags']) && is_array($data['event-data']['tags']) ){
+                $this->tag->tagEvent($data['event-data']['tags'], $storeEvent->id);
+            }
         }
 
-        if( !empty($data['event-data']['user-variables']) && is_array($data['event-data']['user-variables']) ){
-            $this->variable->processEventVariables($data['event-data']['user-variables'], $storeEvent->id);
+        /**
+         * @desc Check if variable logging is disabled
+         */
+        if( config('mailgun-webhooks.options.disable_variable_logging') !== true ){
+            if( !empty($data['event-data']['user-variables']) && is_array($data['event-data']['user-variables']) ){
+                $this->variable->processEventVariables($data['event-data']['user-variables'], $storeEvent->id);
+            }
         }
+
 
         if( isset($storeEvent->id) ){
             return $storeEvent->id;
