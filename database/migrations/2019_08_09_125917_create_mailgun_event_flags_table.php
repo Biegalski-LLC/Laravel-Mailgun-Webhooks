@@ -32,6 +32,6 @@ class CreateMailgunEventFlagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mailgun_event_flags');
+        Schema::dropIfExists('mailgun_flags');
     }
 }
