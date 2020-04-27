@@ -47,11 +47,11 @@ class MailgunEvent extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function user(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function user(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasOne(config('mailgun-webhooks.users_table.model_fpqn'), 'user_id', config('mailgun-webhooks.users_table.identifier_key'));
+        return $this->hasMany(config('mailgun-webhooks.users_table.model_fpqn'), 'user_id', config('mailgun-webhooks.users_table.identifier_key'));
     }
 
     /**
