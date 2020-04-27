@@ -28,7 +28,11 @@ class CreateMailgunEventsTable extends Migration
             $table->integer('attempt_number')->default(1);
             $table->boolean('attachments')->default(0);
             $table->timestamps();
-            $table->foreign('user_id')->references( config('mailgun-webhooks.user_table.identifier_key') )->on( config('mailgun-webhooks.user_table.name') );
+
+            $table->foreign('user_id')
+                ->references( config('mailgun-webhooks.user_table.identifier_key') )
+                ->on( config('mailgun-webhooks.user_table.name') )
+                ->onDelete('cascade');
         });
     }
 

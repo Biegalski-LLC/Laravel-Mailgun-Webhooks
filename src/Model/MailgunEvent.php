@@ -10,7 +10,18 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MailgunEvent extends Model
 {
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'attachments' => 'boolean'
+    ];
 
+    /**
+     * @var array
+     */
     protected $dispatchesEvents = [
         'created' => \Biegalski\LaravelMailgunWebhooks\Events\CreatedEvent::class,
     ];
@@ -36,18 +47,9 @@ class MailgunEvent extends Model
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'attachments' => 'boolean'
-    ];
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(config('mailgun-webhooks.users_table.model_fpqn'), 'user_id', config('mailgun-webhooks.users_table.identifier_key'));
     }
@@ -55,7 +57,7 @@ class MailgunEvent extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function content()
+    public function content(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(MailgunEventContent::class, 'event_id', 'id');
     }
@@ -63,7 +65,7 @@ class MailgunEvent extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function flags()
+    public function flags(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(MailgunFlag::class, 'event_id', 'id');
     }
@@ -71,7 +73,7 @@ class MailgunEvent extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function tags()
+    public function tags(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(MailgunTag::class, MailgunEventTag::class, 'event_id', 'tag_id');
     }
@@ -79,7 +81,7 @@ class MailgunEvent extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function variables()
+    public function variables(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(MailgunVariable::class, 'event_id', 'id');
     }

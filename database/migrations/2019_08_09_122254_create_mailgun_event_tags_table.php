@@ -18,8 +18,16 @@ class CreateMailgunEventTagsTable extends Migration
             $table->unsignedBigInteger('event_id')->index();
             $table->unsignedBigInteger('tag_id')->index();
             $table->timestamps();
-            $table->foreign('event_id')->references('id')->on('mailgun_events');
-            $table->foreign('tag_id')->references('id')->on('mailgun_tags');
+
+            $table->foreign('event_id')
+                ->references('id')
+                ->on('mailgun_events')
+                ->onDelete('cascade');
+
+            $table->foreign('tag_id')
+                ->references('id')
+                ->on('mailgun_tags')
+                ->onDelete('cascade');
         });
     }
 
