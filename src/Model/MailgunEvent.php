@@ -47,14 +47,6 @@ class MailgunEvent extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
-    {
-        return $this->belongsTo(config('mailgun-webhooks.user_table.model_fpqn'), 'user_id', config('mailgun-webhooks.user_table.identifier_key'));
-    }
-
-    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function content(): \Illuminate\Database\Eloquent\Relations\HasOne
@@ -76,6 +68,14 @@ class MailgunEvent extends Model
     public function tags(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(MailgunTag::class, MailgunEventTag::class, 'event_id', 'tag_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(config('mailgun-webhooks.user_table.model_fpqn'), 'user_id', config('mailgun-webhooks.user_table.identifier_key'));
     }
 
     /**
