@@ -51,7 +51,7 @@ class MailgunEvent extends Model
      */
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(config('mailgun-webhooks.users_table.model_fpqn'), 'user_id', config('mailgun-webhooks.users_table.identifier_key'));
+        return $this->belongsTo(config('mailgun-webhooks.user_table.model_fpqn'), 'user_id', config('mailgun-webhooks.user_table.identifier_key'));
     }
 
     /**
