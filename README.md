@@ -60,15 +60,10 @@ MAILGUN_WEBHOOKS_TRIGGER_PERM_FAILURE=true
 MAILGUN_WEBHOOKS_TRIGGER_SPAM=true
 MAILGUN_WEBHOOKS_TRIGGER_TEMP_FAILURE=true
 MAILGUN_WEBHOOKS_TRIGGER_UNSUBSCRIBE=true
-
-MAILGUN_WEBHOOKS_OPTIONS_DISABLE_CONTENT=false
-MAILGUN_WEBHOOKS_OPTIONS_DISABLE_FLAG=false
-MAILGUN_WEBHOOKS_OPTIONS_DISABLE_TAG=false
-MAILGUN_WEBHOOKS_OPTIONS_DISABLE_VARIABLE=false
 ```
 
 ### Content Logging
-Turn on and off various pieces of content to store.
+Storing all content can quickly build up disk space used. Turn on and off various pieces of content to store. Only store what you need! `body_html` by default is true, the rest by default are false.
 ```
 MAILGUN_WEBHOOKS_CONTENT_LOG_STRIP_HTML=false
 MAILGUN_WEBHOOKS_CONTENT_LOG_STRIP_TEXT=false
