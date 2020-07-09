@@ -4,8 +4,8 @@ return [
     'content_logging' => [
         'stripped_text' => env('MAILGUN_WEBHOOKS_CONTENT_LOG_STRIP_TEXT', false),
         'stripped_html' => env('MAILGUN_WEBHOOKS_CONTENT_LOG_STRIP_HTML', false),
-        'body_html' => env('MAILGUN_WEBHOOKS_CONTENT_LOG_BODY_PLAIN', true),
-        'body_plain' => env('MAILGUN_WEBHOOKS_CONTENT_LOG_BODY_HTML', false),
+        'body_html' => env('MAILGUN_WEBHOOKS_CONTENT_LOG_BODY_HTML', true),
+        'body_plain' => env('MAILGUN_WEBHOOKS_CONTENT_LOG_BODY_PLAIN', false),
     ],
     'custom_database' => env('MAILGUN_WEBHOOKS_CUSTOM_DATABASE', null),
     'event_types' => [
