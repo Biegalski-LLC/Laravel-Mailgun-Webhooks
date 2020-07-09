@@ -30,6 +30,11 @@ class MailgunTagRepository
     {
         $this->model = $model;
         $this->eventTag = $eventTag;
+
+        if( config()->has('mailgun-webhooks.custom_database') && config('mailgun-webhooks.custom_database') !== null ){
+            $this->model->setConnection(config('mailgun-webhooks.custom_database'));
+            $this->eventTag->setConnection(config('mailgun-webhooks.custom_database'));
+        }
     }
 
     /**

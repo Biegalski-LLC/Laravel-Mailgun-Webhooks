@@ -34,8 +34,21 @@ Next, you will want to publish the configuration and view files.
 
 `php artisan vendor:publish --tag=mailgun_webhook_view`
 
-Here are additional fields you'll need to add to your dotenv file:
+## DotEnv Configuration Options
 
+Below you will find various options to configure this plugin to your needs.
+
+### Options
+Turn on and off certain features of this package
+```
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_CONTENT=false
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_FLAG=false
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_TAG=false
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_VARIABLE=false
+```
+
+### Notifications
+Turn on and off various notifications and set who these notifications send to.
 ```
 MAILGUN_WEBHOOKS_ALERTS_TO=
 MAILGUN_WEBHOOKS_ALERTS_FROM_EMAIL=
@@ -54,8 +67,23 @@ MAILGUN_WEBHOOKS_OPTIONS_DISABLE_TAG=false
 MAILGUN_WEBHOOKS_OPTIONS_DISABLE_VARIABLE=false
 ```
 
-By default - we reference the App\Users model to form the relationship. If you use a custom model or have made changes to the User model - you may need to add and edit these variables to your dotenv as well:
+### Content Logging
+Turn on and off various pieces of content to store.
+```
+MAILGUN_WEBHOOKS_CONTENT_LOG_STRIP_HTML=false
+MAILGUN_WEBHOOKS_CONTENT_LOG_STRIP_TEXT=false
+MAILGUN_WEBHOOKS_CONTENT_LOG_BODY_HTML=true
+MAILGUN_WEBHOOKS_CONTENT_LOG_BODY_PLAIN=false
+```
 
+### Custom Database Connection
+Storing all of these mailgun notifications in another database? Specify which database connection to use.
+```
+MAILGUN_WEBHOOKS_CUSTOM_DATABASE=null
+```
+
+### User Model
+By default - we reference the App\Users model to form the relationship. If you use a custom model or have made changes to the User model - you may need to add and edit these variables to your dotenv as well:
 ```
 MAILGUN_WEBHOOKS_USER_TABLE_NAME=users
 MAILGUN_WEBHOOKS_USER_TABLE_EMAIL=email
