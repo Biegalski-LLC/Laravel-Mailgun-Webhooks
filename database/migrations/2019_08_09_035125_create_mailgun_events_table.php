@@ -26,7 +26,7 @@ class CreateMailgunEventsTable extends Migration
 
             $table->bigIncrements('id');
             $table->enum('event_type', config('mailgun-webhooks.event_types') )->index();
-            $table->unsignedBigInteger('user_id')->index()->nullable();
+            $table->$colType('user_id')->index()->nullable();
             $table->string('uuid');
             $table->string('recipient_domain')->nullable();
             $table->string('recipient_user')->nullable();
