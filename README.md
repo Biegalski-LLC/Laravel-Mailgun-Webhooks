@@ -156,6 +156,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 - [naszybko](https://github.com/naszybko) - Introducing events pull request
 - [mafftor](https://github.com/mafftor) - Ukrainian translation
 - [abordage](https://github.com/abordage) - Case-sensitivity fix
+- [alistairreynolds](https://github.com/alistairreynolds) - Foreign key constraint fix
 
 ## License
 
