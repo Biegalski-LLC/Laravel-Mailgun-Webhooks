@@ -14,9 +14,19 @@ class CreateMailgunEventsTable extends Migration
     public function up()
     {
         Schema::create('mailgun_events', function (Blueprint $table) {
+            
+            // Required for inspecting column type of tables with enum fields in it
+            DB::getDoctrineConnection()->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
+
+            if(Schema::getColumnType('users', 'id') === 'integer'){
+                $colType = 'unsignedInteger';
+            }else{
+                $colType = 'unsignedBigInteger';
+            }
+
             $table->bigIncrements('id');
             $table->enum('event_type', config('mailgun-webhooks.event_types') )->index();
-            $table->unsignedBigInteger('user_id')->index()->nullable();
+            $table->$colType('user_id')->index()->nullable();
             $table->string('uuid');
             $table->string('recipient_domain')->nullable();
             $table->string('recipient_user')->nullable();
