@@ -34,12 +34,26 @@ Next, you will want to publish the configuration and view files.
 
 `php artisan vendor:publish --tag=mailgun_webhook_view`
 
-Here are additional fields you'll need to add to your dotenv file:
+## DotEnv Configuration Options
 
+Below you will find various options to configure this plugin to your needs.
+
+### Options
+Turn on and off certain features of this package
+```
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_CONTENT=false
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_FLAG=false
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_TAG=false
+MAILGUN_WEBHOOKS_OPTIONS_DISABLE_VARIABLE=false
+```
+
+### Notifications
+Turn on and off various notifications and set who these notifications send to.
 ```
 MAILGUN_WEBHOOKS_ALERTS_TO=
 MAILGUN_WEBHOOKS_ALERTS_FROM_EMAIL=
 MAILGUN_WEBHOOKS_ALERTS_FROM_NAME=
+
 MAILGUN_WEBHOOKS_TRIGGER_DELIVERED=false
 MAILGUN_WEBHOOKS_TRIGGER_OPENED=false
 MAILGUN_WEBHOOKS_TRIGGER_PERM_FAILURE=true
@@ -48,8 +62,23 @@ MAILGUN_WEBHOOKS_TRIGGER_TEMP_FAILURE=true
 MAILGUN_WEBHOOKS_TRIGGER_UNSUBSCRIBE=true
 ```
 
-By default - we reference the App\Users model to form the relationship. If you use a custom model or have made changes to the User model - you may need to add and edit these variables to your dotenv as well:
+### Content Logging
+Storing all content can quickly build up disk space used. Turn on and off various pieces of content to store. Only store what you need! `body_html` by default is true, the rest by default are false.
+```
+MAILGUN_WEBHOOKS_CONTENT_LOG_STRIP_HTML=false
+MAILGUN_WEBHOOKS_CONTENT_LOG_STRIP_TEXT=false
+MAILGUN_WEBHOOKS_CONTENT_LOG_BODY_HTML=true
+MAILGUN_WEBHOOKS_CONTENT_LOG_BODY_PLAIN=false
+```
 
+### Custom Database Connection
+Storing all of these mailgun notifications in another database? Specify which database connection to use.
+```
+MAILGUN_WEBHOOKS_CUSTOM_DATABASE=null
+```
+
+### User Model
+By default - we reference the App\Users model to form the relationship. If you use a custom model or have made changes to the User model - you may need to add and edit these variables to your dotenv as well:
 ```
 MAILGUN_WEBHOOKS_USER_TABLE_NAME=users
 MAILGUN_WEBHOOKS_USER_TABLE_EMAIL=email
@@ -101,7 +130,7 @@ I have no affiliation with Laravel or Mailgun. Both are just frequently used in 
 
 ## Translations
 
-There is currently 8 translations:
+There is currently 9 translations:
 
 - German
 - English
@@ -111,6 +140,7 @@ There is currently 8 translations:
 - Dutch
 - Portuguese
 - Russian
+- Polish
 
 More languages coming soon!
 
@@ -123,6 +153,10 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 ## Credits
 - [Biegalski LLC](https://biegal.ski/)
 - [paulredmond](https://gist.github.com/paulredmond/14523d3bd8062f9ce48cdd1340b3f171) - Laravel Middleware to Validate a signed Mailgun Webhook.
+- [naszybko](https://github.com/naszybko) - Introducing events pull request
+- [mafftor](https://github.com/mafftor) - Ukrainian translation
+- [abordage](https://github.com/abordage) - Case-sensitivity fix
+- [alistairreynolds](https://github.com/alistairreynolds) - Foreign key constraint fix
 
 ## License
 

@@ -11,6 +11,18 @@ use Illuminate\Database\Eloquent\Model;
 class MailgunFlag extends Model
 {
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_routed' => 'boolean',
+        'is_authenticated' => 'boolean',
+        'is_system_test' => 'boolean',
+        'is_test_mode' => 'boolean'
+    ];
+
+    /**
      * @var array
      */
     protected $fillable = [
@@ -22,14 +34,10 @@ class MailgunFlag extends Model
     ];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    protected $casts = [
-        'is_routed' => 'boolean',
-        'is_authenticated' => 'boolean',
-        'is_system_test' => 'boolean',
-        'is_test_mode' => 'boolean'
-    ];
+    public function event(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(MailgunEvent::class, 'event_id');
+    }
 }

@@ -22,6 +22,10 @@ class MailgunFlagRepository
     public function __construct(MailgunFlag $model)
     {
         $this->model = $model;
+
+        if( config()->has('mailgun-webhooks.custom_database') && config('mailgun-webhooks.custom_database') !== null ){
+            $this->model->setConnection(config('mailgun-webhooks.custom_database'));
+        }
     }
 
     /**

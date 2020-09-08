@@ -19,7 +19,11 @@ class CreateMailgunVariablesTable extends Migration
             $table->string('key');
             $table->string('value');
             $table->timestamps();
-            $table->foreign('event_id')->references('id')->on('mailgun_events');
+
+            $table->foreign('event_id')
+                ->references('id')
+                ->on('mailgun_events')
+                ->onDelete('cascade');
         });
     }
 

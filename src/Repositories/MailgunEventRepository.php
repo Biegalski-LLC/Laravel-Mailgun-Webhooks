@@ -48,13 +48,27 @@ class MailgunEventRepository
      * @param \Biegalski\LaravelMailgunWebhooks\Repositories\MailgunTagRepository $tag
      * @param \Biegalski\LaravelMailgunWebhooks\Repositories\MailgunVariableRepository $variable
      */
-    public function __construct(MailgunEventContent $content, MailgunEvent $model, MailgunFlagRepository $flags, MailgunTagRepository $tag, MailgunVariableRepository $variable)
+    public function __construct(
+        MailgunEventContent $content,
+        MailgunEvent $model,
+        MailgunFlagRepository $flags,
+        MailgunTagRepository $tag,
+        MailgunVariableRepository $variable
+    )
     {
         $this->content = $content;
         $this->model = $model;
         $this->flags = $flags;
         $this->tag = $tag;
         $this->variable = $variable;
+
+        if( config()->has('mailgun-webhooks.custom_database') && config('mailgun-webhooks.custom_database') !== null ){
+            $this->content->setConnection(config('mailgun-webhooks.custom_database'));
+            $this->model->setConnection(config('mailgun-webhooks.custom_database'));
+            $this->flags->setConnection(config('mailgun-webhooks.custom_database'));
+            $this->tag->setConnection(config('mailgun-webhooks.custom_database'));
+            $this->variable->setConnection(config('mailgun-webhooks.custom_database'));
+        }
     }
 
     /**
@@ -67,17 +81,33 @@ class MailgunEventRepository
     {
         $storeEvent = $this->storeEvent($eventType, $data, $userId);
 
-        if( !empty($data['event-data']['flags']) && is_array($data['event-data']['flags']) ){
-            $this->flags->createFlags($data['event-data']['flags'], $storeEvent->id);
+        /**
+         * @desc Check if flag logging is disabled
+         */
+        if( config('mailgun-webhooks.options.disable_flag_logging') !== true ){
+            if( !empty($data['event-data']['flags']) && is_array($data['event-data']['flags']) ){
+                $this->flags->createFlags($data['event-data']['flags'], $storeEvent->id);
+            }
         }
 
-        if( !empty($data['event-data']['tags']) && is_array($data['event-data']['tags']) ){
-            $this->tag->tagEvent($data['event-data']['tags'], $storeEvent->id);
+        /**
+         * @desc Check if tag logging is disabled
+         */
+        if( config('mailgun-webhooks.options.disable_tag_logging') !== true ){
+            if( !empty($data['event-data']['tags']) && is_array($data['event-data']['tags']) ){
+                $this->tag->tagEvent($data['event-data']['tags'], $storeEvent->id);
+            }
         }
 
-        if( !empty($data['event-data']['user-variables']) && is_array($data['event-data']['user-variables']) ){
-            $this->variable->processEventVariables($data['event-data']['user-variables'], $storeEvent->id);
+        /**
+         * @desc Check if variable logging is disabled
+         */
+        if( config('mailgun-webhooks.options.disable_variable_logging') !== true ){
+            if( !empty($data['event-data']['user-variables']) && is_array($data['event-data']['user-variables']) ){
+                $this->variable->processEventVariables($data['event-data']['user-variables'], $storeEvent->id);
+            }
         }
+
 
         if( isset($storeEvent->id) ){
             return $storeEvent->id;
@@ -117,17 +147,25 @@ class MailgunEventRepository
      */
     public function storeContent(int $eventId, array $content)
     {
-        return $this->content->create([
+        $data = [
             'event_id' => $eventId,
             'subject' => $content['subject'] ?? null,
             'to' => $content['To'] ?? null,
             'content_type' => $content['Content-Type'] ?? null,
             'message_id' => $content['Message-Id'] ?? null,
-            'stripped_text' => $content['stripped-text'] ?? null,
-            'stripped_html' => $content['stripped-html'] ?? null,
-            'body_html' => $content['body-html'] ?? null,
-            'body_plain' => $content['body-plain'] ?? null,
-        ]);
+            'stripped_text' => null,
+            'stripped_html' => null,
+            'body_html' => null,
+            'body_plain' => null,
+        ];
+
+        $data['stripped_text'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.stripped_text', $content['stripped-text']);
+        $data['stripped_html'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.stripped_html', $content['stripped-html']);
+        $data['body_html'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.body_html', $content['body-html']);
+        $data['body_plain'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.body_plain', $content['body-plain']);
+
+
+        return $this->content->create($data);
     }
 
     /**
@@ -177,5 +215,19 @@ class MailgunEventRepository
         return DB::table( config('mailgun-webhooks.user_table.name') )
             ->where( config('mailgun-webhooks.user_table.email_column'), $email)
             ->first();
+    }
+
+    /**
+     * @param string $key
+     * @param string $content
+     * @return string|null
+     */
+    private function checkStorageOptions(string $key, string $content)
+    {
+        if( config()->has($key) && config($key) === false ){
+            return null;
+        }
+
+        return $content;
     }
 }

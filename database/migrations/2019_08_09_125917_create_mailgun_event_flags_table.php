@@ -21,7 +21,11 @@ class CreateMailgunEventFlagsTable extends Migration
             $table->boolean('is_system_test')->default(0);
             $table->boolean('is_test_mode')->default(0);
             $table->timestamps();
-            $table->foreign('event_id')->references('id')->on('mailgun_events');
+
+            $table->foreign('event_id')
+                ->references('id')
+                ->on('mailgun_events')
+                ->onDelete('cascade');
         });
     }
 
@@ -32,6 +36,6 @@ class CreateMailgunEventFlagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mailgun_event_flags');
+        Schema::dropIfExists('mailgun_flags');
     }
 }

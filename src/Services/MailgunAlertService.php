@@ -25,7 +25,7 @@ class MailgunAlertService
      * @param $data
      * @return bool|null
      */
-    public function sendAlert(string $type, $data)
+    public function sendAlert(string $type, $data): ?bool
     {
         switch ($type){
             case 'Delivered Messages':
@@ -79,6 +79,7 @@ class MailgunAlertService
             default:
                 return null;
         }
+        return null;
     }
 
     /**
@@ -86,7 +87,7 @@ class MailgunAlertService
      * @param array $data
      * @return array
      */
-    private function addTranslatedSubjectDesc(string $type, array $data)
+    private function addTranslatedSubjectDesc(string $type, array $data): array
     {
         $data['alert_email_subject'] = trans('laravel-mailgun-webhooks::email.' . $type . '.subject');
         $data['alert_email_desc'] = trans('laravel-mailgun-webhooks::email.' . $type . '.desc');
@@ -99,7 +100,7 @@ class MailgunAlertService
      * @param array $data
      * @return bool
      */
-    private function sendEmail(string $eventType, array $data)
+    private function sendEmail(string $eventType, array $data): ?bool
     {
         $subject = $this->buildEmailSubject($eventType);
 
@@ -122,7 +123,7 @@ class MailgunAlertService
      * @param string $eventType
      * @return string
      */
-    private function buildEmailSubject(string $eventType)
+    private function buildEmailSubject(string $eventType): string
     {
         return config('mailgun-webhooks.send_alerts.subject_prefix') . ' ' . $eventType;
     }

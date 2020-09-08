@@ -18,4 +18,12 @@ class MailgunVariable extends Model
         'key',
         'value'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function event(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(MailgunEvent::class, 'event_id');
+    }
 }

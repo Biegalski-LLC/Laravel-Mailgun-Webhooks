@@ -25,7 +25,11 @@ class CreateMailgunEventContentTable extends Migration
             $table->longText('body_html')->nullable();
             $table->mediumText('body_plain')->nullable();
             $table->timestamps();
-            $table->foreign('event_id')->references('id')->on('mailgun_events');
+
+            $table->foreign('event_id')
+                ->references('id')
+                ->on('mailgun_events')
+                ->onDelete('cascade');
         });
     }
 
