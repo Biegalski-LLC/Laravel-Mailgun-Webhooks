@@ -94,7 +94,7 @@ Now, you'll need to run the database migrations:
 
 `php artisan migrate`
 
-And, finally, you'll need to add a middleware to the route middleware group. In `app\Http\Kernal.php` add the following line to the `routeMiddleware` group:
+And, finally, you'll need to add a middleware to the route middleware group. In `app\Http\Kernel.php` add the following line to the `routeMiddleware` group:
 
 `'mailgun_webhooks' => \Biegalski\LaravelMailgunWebhooks\Middleware\ValidateMailgunWebhook::class,`
 
