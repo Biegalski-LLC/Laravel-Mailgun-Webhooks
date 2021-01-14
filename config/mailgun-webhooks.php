@@ -42,5 +42,6 @@ return [
         'email_column' => env('MAILGUN_WEBHOOKS_USER_TABLE_EMAIL', 'email'),
         'identifier_key' => env('MAILGUN_WEBHOOKS_USER_TABLE_KEY', 'id'),
         'model_fpqn' => env('MAILGUN_WEBHOOKS_USER_TABLE_FPQN', 'App\User')
-    ]
+    ],
+    'signing_key' => env('MAILGUN_WEBHOOKS_SIGNING_KEY', null),
 ];
