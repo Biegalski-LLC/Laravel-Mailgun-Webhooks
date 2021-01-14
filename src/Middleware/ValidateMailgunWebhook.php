@@ -44,7 +44,7 @@ class ValidateMailgunWebhook
         return hash_hmac(
             'sha256',
             sprintf('%s%s', $request->input('signature.timestamp'), $request->input('signature.token')),
-            config('services.mailgun.secret')
+            empty(config('mailgun-webhooks.signing_key')) ? config('services.mailgun.secret') : config('mailgun-webhooks.signing_key')
         );
     }
 
