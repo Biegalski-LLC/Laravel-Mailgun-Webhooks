@@ -163,6 +163,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 - [mafftor](https://github.com/mafftor) - Ukrainian translation
 - [abordage](https://github.com/abordage) - Case-sensitivity fix
 - [alistairreynolds](https://github.com/alistairreynolds) - Foreign key constraint fix
+- [PunchRockgroin](https://github.com/PunchRockgroin) - Add Mailgun HTTP webhook signing key configuration
 
 ## License
 
