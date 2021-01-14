@@ -86,6 +86,12 @@ MAILGUN_WEBHOOKS_USER_TABLE_KEY=id
 MAILGUN_WEBHOOKS_USER_TABLE_FPQN=App\Users
 ```
 
+### Signing Key
+Mailgun allows you to set an HTTP webhook signing key, which can be different from the API key value set in the MAILGUN_SECRET environment variable used to connect to the Mailgun API for sending. This is especailly useful if you use Domain level sending API keys or have rotated the HTTP Webhook signing key. Defaults to the MAILGUN_SECRET value.
+```
+MAILGUN_WEBHOOKS_SIGNING_KEY=
+```
+
 After you've completed the configuration - lets re-cache it:
 
 `php artisan config:cache`
