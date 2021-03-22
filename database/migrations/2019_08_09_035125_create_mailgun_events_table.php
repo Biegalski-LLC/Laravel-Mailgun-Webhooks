@@ -18,7 +18,7 @@ class CreateMailgunEventsTable extends Migration
             // Required for inspecting column type of tables with enum fields in it
             DB::getDoctrineConnection()->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
 
-            if(Schema::getColumnType('users', 'id') === 'integer'){
+            if(Schema::getColumnType(config('mailgun-webhooks.user_table.name', 'users'), 'id') === 'integer'){
                 $colType = 'unsignedInteger';
             }else{
                 $colType = 'unsignedBigInteger';
