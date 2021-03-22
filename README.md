@@ -165,6 +165,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 - [alistairreynolds](https://github.com/alistairreynolds) - Foreign key constraint fix
 - [PunchRockgroin](https://github.com/PunchRockgroin) - Add Mailgun HTTP webhook signing key configuration
 - [affektde](https://github.com/affektde) - Added PHP8 support
+- [mharkrollen2](https://github.com/mharkrollen2) - fix table name for custom table
 
 ## License
 
