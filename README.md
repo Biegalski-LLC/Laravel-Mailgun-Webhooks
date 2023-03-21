@@ -1,4 +1,4 @@
-# Laravel Mailgun Webhooks
+# Mailgun Webhooks for Laravel
 
 #### Tracking
 This package allows you to quick and easily integrate your Laravel application with Mailgun Webhooks thus allowing you to track the outgoing email status for each individual user.
