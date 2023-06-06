@@ -74,13 +74,15 @@ class MailgunWebhooksController extends Controller
     {
         $storeMessageData = $this->mailgunService->store($type, $data);
 
-        try{
-            $this->alertService->sendAlert($type, $data);
-        }catch (\Exception $exception){
-            return response()->json('Error: ' . $exception->getMessage(), 503);
+        if (config('mailgun-webhooks.send_alerts')) {
+            try {
+                $this->alertService->sendAlert($type, $data);
+            } catch (\Exception $exception){
+                return response()->json('Error: ' . $exception->getMessage(), 503);
+            }
         }
 
-        if( $storeMessageData ){
+        if ($storeMessageData ) {
             return response()->json('Success!', 200);
         }
 

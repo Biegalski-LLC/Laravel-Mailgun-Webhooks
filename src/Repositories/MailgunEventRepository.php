@@ -159,10 +159,10 @@ class MailgunEventRepository
             'body_plain' => null,
         ];
 
-        $data['stripped_text'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.stripped_text', $content['stripped-text']);
-        $data['stripped_html'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.stripped_html', $content['stripped-html']);
-        $data['body_html'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.body_html', $content['body-html']);
-        $data['body_plain'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.body_plain', $content['body-plain']);
+        $data['stripped_text'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.stripped_text', data_get($content, 'stripped-text', ''));
+        $data['stripped_html'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.stripped_html', data_get($content, 'stripped-html', ''));
+        $data['body_html'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.body_html', data_get($content, 'body-html', ''));
+        $data['body_plain'] = $this->checkStorageOptions('mailgun-webhooks.content_logging.body_plain', data_get($content, 'body-plain', ''));
 
 
         return $this->content->create($data);
