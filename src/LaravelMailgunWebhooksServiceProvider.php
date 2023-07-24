@@ -48,6 +48,13 @@ class LaravelMailgunWebhooksServiceProvider extends ServiceProvider
         ], 'mailgun_webhook_view');
 
         /**
+         * Publish migrations
+         */
+        $this->publishes([
+            __DIR__ . '/../database/migrations/' => database_path('migrations'),
+        ], 'mailgun_webhook_migrations');
+
+        /**
          * Load routes
          */
         $this->loadRoutesFrom(__DIR__ . '/routes.php');
