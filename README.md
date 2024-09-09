@@ -1,4 +1,15 @@
-# Mailgun Webhooks for Laravel
+# New Package
+
+This package, `Laravel-Mailgun-Webhooks`, has been superseded by a new and improved solution: [`Notification-Tracker`](https://github.com/Biegalski-LLC/Notification-Tracker).
+
+`Notification-Tracker` offers a more robust, flexible, and maintainable way to handle webhook notifications. We strongly encourage all users to migrate to the new package.
+
+This repository will remain available for reference, but it will no longer be actively maintained.
+
+Thank you for your understanding.
+
+
+## Mailgun Webhooks for Laravel
 
 #### Tracking
 This package allows you to quick and easily integrate your Laravel application with Mailgun Webhooks thus allowing you to track the outgoing email status for each individual user.
