@@ -45,6 +45,15 @@ Next, you will want to publish the configuration and view files.
 
 `php artisan vendor:publish --tag=mailgun_webhook_view`
 
+### Migrations
+
+Since the migrations for this package was made in 2019. They can cause problems with newer projects. \
+Using a user model for instance "App\Models\Customer" that was created after 2019. When running tests the migrations will be run on a mock database, which will cause the package migrations to be run before the customers table exist. The package migrations will try to create a relation to your user model. \
+
+To circumvent this, you can publish the migrations and manually change the timestamps in the file names.
+
+`php artisan vendor:publish --tag=mailgun_webhook_migrations`
+
 ## DotEnv Configuration Options
 
 Below you will find various options to configure this plugin to your needs.
